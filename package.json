@@ -31,5 +31,9 @@
     ],
     "rules": {}
   },
-  "prettier": {}
+  "prettier": {
+    "tabWidth": 2,
+    "semi": true,
+    "arrowParens": "always"
+  }
 }
