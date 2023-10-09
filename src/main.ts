@@ -32,13 +32,15 @@ button.addEventListener("click", () => {
 const autoclick_element = create_new_element(
   "div",
   "30px",
-  player.pineapples_per_second + " / pps",
+  player.pineapples_per_second.toFixed(1) + " / pps",
 );
 player.pineapple_per_second_count_element = autoclick_element as HTMLDivElement;
 start_auto_counter(player);
 
 //First upgrade button
-new upgrade_button("🥢", 10, 1, 1, player);
+new upgrade_button("🥢", 10, 0.1, 1, player);
+new upgrade_button("📏", 100, 2, 1, player);
+new upgrade_button("🥄", 1000, 50, 1, player);
 
 //-----------------
 //----Functions----

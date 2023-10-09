@@ -63,7 +63,7 @@ export class upgrade_button {
       " Cost: " +
       cost +
       " | " +
-      this.per_second_increase +
+      this.per_second_increase.toFixed(1) +
       " pps";
     this.button_element.disabled = true;
     world.elements_to_add.push(this.button_element);
@@ -82,7 +82,7 @@ export class upgrade_button {
 
     if (this.world_state.pineapple_per_second_count_element != null) {
       this.world_state.pineapple_per_second_count_element.innerHTML =
-        this.world_state.pineapples_per_second + " / pps";
+        this.world_state.pineapples_per_second.toFixed(1) + " / pps";
     }
   }
 }
