@@ -1,3 +1,4 @@
+// World State Class
 export class world_state {
   per_click_increase: number;
   pineapples_per_second: number;
@@ -35,7 +36,7 @@ export class world_state {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
+//Upgrade button class
 export class upgrade_button {
   button_element: HTMLButtonElement;
   cost: number;
@@ -59,16 +60,7 @@ export class upgrade_button {
     this.price_scaling = p_scaling;
     this.world_state = world;
 
-    this.button_element.innerHTML =
-      "<font size=" +
-      "+3" +
-      ">" +
-      this.emoji_name +
-      "</font><br> Cost: " +
-      cost +
-      " | " +
-      this.per_second_increase.toFixed(1) +
-      " pps";
+    this.set_text();
     this.button_element.disabled = true;
     world.elements_to_add.push(this.button_element);
 
@@ -97,11 +89,21 @@ export class upgrade_button {
 
   set_text() {
     this.button_element.innerHTML =
+      "<font size=" +
+      "+3" +
+      ">" +
       this.emoji_name +
-      " Cost: " +
-      this.cost.toFixed(2) +
+      "</font><br> Cost: " +
+      this.cost.toFixed(1) +
       " | " +
       this.per_second_increase.toFixed(1) +
       " pps";
   }
+}
+
+//Upgrade button data interface
+export interface upgrade_data {
+  name: string;
+  cost: number;
+  rate: number;
 }

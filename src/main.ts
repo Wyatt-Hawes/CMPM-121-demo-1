@@ -1,8 +1,14 @@
 import "./style.css";
-import { world_state, upgrade_button } from "./classes";
+import { world_state, upgrade_button, upgrade_data } from "./classes";
 ("./classes.ts");
 
 //Upgrade Ideas 🥢 📏 🥄 ✂️ 🪒 🔧 🗡️ 🪓 ⛏ 🔪
+
+const available_upgrades: upgrade_data[] = [
+  { name: "🥢 Chopsticks", cost: 10, rate: 0.1 },
+  { name: "📏 Ruler", cost: 100, rate: 2 },
+  { name: "🥄 Spoon", cost: 1000, rate: 50 },
+];
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
@@ -37,10 +43,10 @@ const autoclick_element = create_new_element(
 player.pineapple_per_second_count_element = autoclick_element as HTMLDivElement;
 start_auto_counter(player);
 
-//Upgrade buttons
-new upgrade_button("🥢 Chopsticks", 10, 0.1, 1.15, player);
-new upgrade_button("📏 Ruler", 100, 2, 1.15, player);
-new upgrade_button("🥄 Spoon", 1000, 50, 1.15, player);
+//Create Upgrade buttons
+available_upgrades.forEach((data) => {
+  new upgrade_button(data.name, data.cost, data.rate, 1.15, player);
+});
 
 //-----------------
 //----Functions----
