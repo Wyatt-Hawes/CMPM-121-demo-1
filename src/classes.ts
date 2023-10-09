@@ -44,6 +44,7 @@ export class upgrade_button {
   price_scaling: number;
   emoji_name: string;
   world_state: world_state;
+  description: string;
 
   constructor(
     emoji: string,
@@ -51,6 +52,7 @@ export class upgrade_button {
     psi: number,
     p_scaling: number,
     world: world_state,
+    description: string,
   ) {
     this.emoji_name = emoji;
     this.button_element = document.createElement("button");
@@ -59,6 +61,7 @@ export class upgrade_button {
     this.per_second_increase = psi;
     this.price_scaling = p_scaling;
     this.world_state = world;
+    this.description = description;
 
     this.set_text();
     this.button_element.disabled = true;
@@ -89,15 +92,17 @@ export class upgrade_button {
 
   set_text() {
     this.button_element.innerHTML =
-      "<font size=" +
-      "+3" +
-      ">" +
+      "<font size=+3>" +
       this.emoji_name +
       "</font><br> Cost: " +
       this.cost.toFixed(1) +
       " | " +
       this.per_second_increase.toFixed(1) +
-      " pps";
+      " pps" +
+      "<br>" +
+      "<font size=-1>" +
+      this.description +
+      "</font>";
   }
 }
 
@@ -106,4 +111,5 @@ export interface upgrade_data {
   name: string;
   cost: number;
   rate: number;
+  description: string;
 }
