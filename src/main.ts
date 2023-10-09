@@ -38,9 +38,9 @@ player.pineapple_per_second_count_element = autoclick_element as HTMLDivElement;
 start_auto_counter(player);
 
 //First upgrade button
-new upgrade_button("🥢", 10, 0.1, 1, player);
-new upgrade_button("📏", 100, 2, 1, player);
-new upgrade_button("🥄", 1000, 50, 1, player);
+new upgrade_button("🥢", 10, 0.1, 1.15, player);
+new upgrade_button("📏", 100, 2, 1.15, player);
+new upgrade_button("🥄", 1000, 50, 1.15, player);
 
 //-----------------
 //----Functions----

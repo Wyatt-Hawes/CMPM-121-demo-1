@@ -19,7 +19,8 @@ export class world_state {
 
   update_counter(count: number, text: string = " Pineapples Chopped!") {
     this.total_pineapples = this.total_pineapples + count;
-    this.total_pineapple_count_element.innerHTML = this.total_pineapples + text;
+    this.total_pineapple_count_element.innerHTML =
+      this.total_pineapples.toFixed(0) + text;
     this.check_buttons();
   }
 
@@ -69,8 +70,8 @@ export class upgrade_button {
     world.elements_to_add.push(this.button_element);
 
     this.button_element.addEventListener("click", () => {
-      world.update_counter(cost * -1, undefined);
-      this.cost = this.cost * this.price_scaling;
+      world.update_counter(this.cost * -1, undefined);
+      this.update_cost();
       this.update_pineapple_per_second();
     });
     this.world_state.upgrade_buttons.push(this);
@@ -84,5 +85,20 @@ export class upgrade_button {
       this.world_state.pineapple_per_second_count_element.innerHTML =
         this.world_state.pineapples_per_second.toFixed(1) + " / pps";
     }
+  }
+
+  update_cost() {
+    this.cost = this.cost * this.price_scaling;
+    this.set_text();
+  }
+
+  set_text() {
+    this.button_element.innerHTML =
+      this.emoji_name +
+      " Cost: " +
+      this.cost.toFixed(2) +
+      " | " +
+      this.per_second_increase.toFixed(1) +
+      " pps";
   }
 }
