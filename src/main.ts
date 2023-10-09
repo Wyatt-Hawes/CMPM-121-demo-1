@@ -1,21 +1,23 @@
 import "./style.css";
 
+const per_click_increase: number = 1;
+const pineapples_per_second: number = 2;
+let total_pineapples: number = 0;
+
 const app: HTMLDivElement = document.querySelector("#app")!;
 
+//Added elements array
 let elements_to_add: HTMLElement[] = [];
 elements_to_add = [];
 
+//Title & Header Element
 const gameName = "Wyatt's game";
 const buttonName = "🍍";
-
 document.title = gameName;
-
-// Header Element
 create_new_element("h1", "", gameName);
 
 // Counter Element
-let total_pineapples: number = 0;
-const counter_element = create_new_element(
+const total_pineapple_counter_element = create_new_element(
   "div",
   "40px",
   total_pineapples + " Pineapples Chopped!",
@@ -25,46 +27,22 @@ const counter_element = create_new_element(
 const button = create_new_element("button", "50px", buttonName);
 
 // Clicker Element
-const num_to_increase: number = 1;
 button.addEventListener("click", () => {
   update_counter(
-    counter_element,
-    total_pineapples,
-    num_to_increase,
+    total_pineapple_counter_element,
+    per_click_increase,
     " Pineapples Chopped!",
   );
 });
 
 //Auto Click Element
-const per_second_counter: number = 1;
-const updates_per_second: number = 1;
-
-create_new_element("div", "30px", per_second_counter + " / pps");
-
-//Interval
-setInterval(() => {
-  update_counter(
-    counter_element,
-    total_pineapples,
-    per_second_counter / updates_per_second,
-  );
-}, updates_per_second * 1000);
+create_new_element("div", "30px", pineapples_per_second + " / pps");
+start_auto_counter(total_pineapple_counter_element, pineapples_per_second);
 
 //Add all elements in order
 elements_to_add.forEach((elem) => {
   app.append(elem);
 });
-
-//Update counter function
-function update_counter(
-  count_element: HTMLDivElement | HTMLElement,
-  counter: number,
-  count: number,
-  text: string = " Pineapples Chopped!",
-) {
-  total_pineapples = counter + count;
-  count_element.innerHTML = total_pineapples + text;
-}
 
 // Create a new HTML element function
 function create_new_element(type: string, font_size: string, text: string) {
@@ -74,4 +52,30 @@ function create_new_element(type: string, font_size: string, text: string) {
   elements_to_add.push(new_element);
 
   return new_element;
+}
+
+//Update counter function
+function update_counter(
+  count_element: HTMLDivElement | HTMLElement,
+  count: number,
+  text: string = " Pineapples Chopped!",
+) {
+  total_pineapples = total_pineapples + count;
+  count_element.innerHTML = total_pineapples + text;
+}
+
+//Automatically update counter based on pineapples_per_second
+function start_auto_counter(elem: HTMLElement, pps: number) {
+  let past_date = performance.now();
+  window.requestAnimationFrame(check_for_counter_update);
+
+  function check_for_counter_update() {
+    const milliseconds_per_update = 1000 / pps;
+
+    if (performance.now() - past_date > milliseconds_per_update) {
+      update_counter(elem, 1);
+      past_date = performance.now();
+    }
+    window.requestAnimationFrame(check_for_counter_update);
+  }
 }
