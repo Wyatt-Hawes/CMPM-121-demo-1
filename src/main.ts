@@ -16,12 +16,12 @@ player.elements_to_add.push(total_pineapple_counter_element);
 
 //Title & Header Element
 const gameName = "Wyatt's game";
-const buttonName = "🍍";
 document.title = gameName;
 create_new_element("h1", "", gameName, true);
 
 // Button Element
-const button = create_new_element("button", "50px", buttonName);
+const buttonName = "🍍";
+const button = create_new_element("button", "70px", buttonName);
 
 // Clicker Element
 button.addEventListener("click", () => {
@@ -37,10 +37,10 @@ const autoclick_element = create_new_element(
 player.pineapple_per_second_count_element = autoclick_element as HTMLDivElement;
 start_auto_counter(player);
 
-//First upgrade button
-new upgrade_button("🥢", 10, 0.1, 1.15, player);
-new upgrade_button("📏", 100, 2, 1.15, player);
-new upgrade_button("🥄", 1000, 50, 1.15, player);
+//Upgrade buttons
+new upgrade_button("🥢 Chopsticks", 10, 0.1, 1.15, player);
+new upgrade_button("📏 Ruler", 100, 2, 1.15, player);
+new upgrade_button("🥄 Spoon", 1000, 50, 1.15, player);
 
 //-----------------
 //----Functions----

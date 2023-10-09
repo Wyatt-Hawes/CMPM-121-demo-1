@@ -60,8 +60,11 @@ export class upgrade_button {
     this.world_state = world;
 
     this.button_element.innerHTML =
+      "<font size=" +
+      "+3" +
+      ">" +
       this.emoji_name +
-      " Cost: " +
+      "</font><br> Cost: " +
       cost +
       " | " +
       this.per_second_increase.toFixed(1) +
