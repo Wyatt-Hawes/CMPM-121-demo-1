@@ -1,11 +1,11 @@
 // World State Class
-export class world_state {
+export class WorldState {
   per_click_increase: number;
   pineapples_per_second: number;
   total_pineapples: number;
   elements_to_add: HTMLElement[] = [];
   total_pineapple_count_element: HTMLDivElement;
-  upgrade_buttons: upgrade_button[] = [];
+  upgrade_buttons: UpgradeButton[] = [];
   pineapple_per_second_count_element: HTMLDivElement | null = null;
 
   constructor(total_pineapple_counter_element: HTMLDivElement) {
@@ -37,13 +37,13 @@ export class world_state {
 }
 
 //Upgrade button class
-export class upgrade_button {
+export class UpgradeButton {
   button_element: HTMLButtonElement;
   cost: number;
   per_second_increase: number;
   price_scaling: number;
   emoji_name: string;
-  world_state: world_state;
+  world_state: WorldState;
   description: string;
 
   constructor(
@@ -51,7 +51,7 @@ export class upgrade_button {
     cost: number,
     psi: number,
     p_scaling: number,
-    world: world_state,
+    world: WorldState,
     description: string,
   ) {
     this.emoji_name = emoji;
@@ -107,7 +107,7 @@ export class upgrade_button {
 }
 
 //Upgrade button data interface
-export interface upgrade_data {
+export interface UpgradeData {
   name: string;
   cost: number;
   rate: number;

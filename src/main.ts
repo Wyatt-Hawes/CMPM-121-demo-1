@@ -1,10 +1,10 @@
 import "./style.css";
-import { world_state, upgrade_button, upgrade_data } from "./classes";
+import { WorldState, UpgradeButton, UpgradeData } from "./classes";
 ("./classes.ts");
 
 //Upgrade Ideas 🥢 📏 🥄 ✂️ 🪒 🔧 🗡️ 🪓 ⛏ 🔪
 
-const available_upgrades: upgrade_data[] = [
+const available_upgrades: UpgradeData[] = [
   {
     name: "🥢 Chopsticks",
     cost: 10,
@@ -45,7 +45,7 @@ total_pineapple_counter_element.style.fontSize = "40pt";
 total_pineapple_counter_element.innerHTML = 0 + " Pineapples Chopped!";
 
 //Initialize world state
-const player: world_state = new world_state(total_pineapple_counter_element);
+const player: WorldState = new WorldState(total_pineapple_counter_element);
 player.elements_to_add.push(total_pineapple_counter_element);
 
 //Title & Header Element
@@ -73,7 +73,7 @@ start_auto_counter(player);
 
 //Create Upgrade buttons
 available_upgrades.forEach((data) => {
-  new upgrade_button(
+  new UpgradeButton(
     data.name,
     data.cost,
     data.rate,
@@ -114,7 +114,7 @@ function create_new_element(
 //Update counter function
 
 //Automatically update counter based on pineapples_per_second
-function start_auto_counter(player_world_state: world_state) {
+function start_auto_counter(player_world_state: WorldState) {
   let past_date = performance.now();
   window.requestAnimationFrame(check_for_counter_update);
 
