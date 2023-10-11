@@ -45,6 +45,7 @@ export class UpgradeButton {
   emoji_name: string;
   world_state: WorldState;
   description: string;
+  times_purchased: number;
 
   constructor(
     emoji: string,
@@ -62,6 +63,7 @@ export class UpgradeButton {
     this.price_scaling = p_scaling;
     this.world_state = world;
     this.description = description;
+    this.times_purchased = 0;
 
     this.set_text();
     this.button_element.disabled = true;
@@ -71,6 +73,8 @@ export class UpgradeButton {
       world.update_counter(this.cost * -1, undefined);
       this.update_cost();
       this.update_pineapple_per_second();
+      this.update_times_purchased(1);
+      this.set_text();
     });
     this.world_state.upgrade_buttons.push(this);
   }
@@ -87,13 +91,17 @@ export class UpgradeButton {
 
   update_cost() {
     this.cost = this.cost * this.price_scaling;
-    this.set_text();
+  }
+
+  update_times_purchased(amount: number) {
+    this.times_purchased = this.times_purchased + amount;
   }
 
   set_text() {
+    const name_text = this.get_name_text();
     this.button_element.innerHTML =
       "<font size=+3>" +
-      this.emoji_name +
+      name_text +
       "</font><br> Cost: " +
       this.cost.toFixed(1) +
       " | " +
@@ -103,6 +111,16 @@ export class UpgradeButton {
       "<font size=-1>" +
       this.description +
       "</font>";
+  }
+
+  get_name_text() {
+    let name_text;
+    if (this.times_purchased > 0) {
+      name_text = this.emoji_name + " (" + this.times_purchased + ")";
+    } else {
+      name_text = this.emoji_name;
+    }
+    return name_text;
   }
 }
 
